@@ -1,0 +1,11 @@
+{
+	"MailingMonitoring": {
+		"BaseName":"Monitoring Mailingów",
+		"PaywallPlan":"Paywall Plan",
+		"ArticleID":"ID Artykułu",
+		"PPReport":"Raport Paywall Plan",
+		"AIDReport":"Raport ID Artykułu",
+		"Visitors":"Odwiedzający",
+		"Actions":"Wyświetlenia"
+	}
+}
