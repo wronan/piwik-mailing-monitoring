@@ -18,7 +18,15 @@ class Menu extends \Piwik\Plugin\Menu
 {
     public function configureReportingMenu(MenuReporting $menu)
     {
-         $menu->addVisitorsItem(Piwik::translate('MailingMonitoring_PPReport'), $this->urlForAction('getPPReport'), $orderId = 81);
-         $menu->addVisitorsItem(Piwik::translate('MailingMonitoring_AIDReport'), $this->urlForAction('getAIDReport'), $orderId = 82);
+        $menu->addVisitorsItem(
+            Piwik::translate('MailingMonitoring_PPReport'),
+            $this->urlForAction('getPPReport'),
+            $orderId = 81
+        );
+        $menu->addVisitorsItem(
+            Piwik::translate('MailingMonitoring_AIDReport'),
+            $this->urlForAction('getAIDReport'),
+            $orderId = 82
+        );
     }
 }

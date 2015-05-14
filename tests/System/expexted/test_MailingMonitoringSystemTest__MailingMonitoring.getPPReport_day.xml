@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<result>
+        <row>
+                <label>test1</label>
+                <value>8</value>
+        </row>
+        <row>
+                <label>test2</label>
+                <value>8</value>
+        </row>
+</result>

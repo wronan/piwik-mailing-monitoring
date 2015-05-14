@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<result>
+        <row>
+                <label>1</label>
+                <value>4</value>
+        </row>
+        <row>
+                <label>2</label>
+                <value>4</value>
+        </row>
+        <row>
+                <label>3</label>
+                <value>4</value>
+        </row>
+        <row>
+                <label>4</label>
+                <value>4</value>
+        </row>
+</result>

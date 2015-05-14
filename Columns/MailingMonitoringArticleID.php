@@ -34,7 +34,13 @@ class MailingMonitoringArticleID extends ActionDimension
 		}
 
 		$tracked_url_vars = array();
-		parse_str(parse_url($_GET['url'], PHP_URL_QUERY), $tracked_url_vars);
+		parse_str(
+            parse_url(
+                html_entity_decode(Common::getRequestVar('url', '', 'string')),
+                PHP_URL_QUERY
+            ),
+            $tracked_url_vars
+        );
 
 		$value = Common::getRequestVar('ArticleId', 0, 'int', $tracked_url_vars);
 

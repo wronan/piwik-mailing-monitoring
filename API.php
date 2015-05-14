@@ -25,13 +25,11 @@ class API extends \Piwik\Plugin\API
 
     public function getPPReport($idSite, $period, $date, $segment = false)
     {
-		$table = $this->getDataTable(Archiver::MAILMON_ARCHIVE_PP_RECORD, $idSite, $period, $date, $segment);
-        return $table;
+        return $this->getDataTable(Archiver::MAILMON_ARCHIVE_PP_RECORD, $idSite, $period, $date, $segment);
     }
 
     public function getAIDReport($idSite, $period, $date, $segment = false)
     {
-		$table = $this->getDataTable(Archiver::MAILMON_ARCHIVE_AID_RECORD, $idSite, $period, $date, $segment);
-        return $table;
+        return $this->getDataTable(Archiver::MAILMON_ARCHIVE_AID_RECORD, $idSite, $period, $date, $segment);
     }
 }

@@ -1,0 +1,16 @@
+{
+2	    "name": "piwik/MailingMonitoring",
+3	    "type": "piwik-plugin",
+4	    "description": "Stores information about visitor article and paywall plan in order to analyze newspaper statistics. Data is settled from url vars named PaywallPlan and ArticleId.",
+5	    "license": "GPL-3.0",
+8	    "authors": [
+9	        {
+10	            "name": "Jan Wroniszewski",
+11	            "email": "jan@industreal.pl"
+12	        }
+13	    ],
+14	    "require": {
+15		    "piwik/piwik": ">=2.11.1",
+16	        "php": ">=5.3.0"
+17	    }
+18	}

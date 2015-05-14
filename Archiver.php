@@ -11,6 +11,7 @@ use Piwik\Metrics;
 use Piwik\DataTable;
 use Piwik\DataTable\Row;
 use Piwik\Piwik;
+use Piwik\Log;
 
 class Archiver extends \Piwik\Plugin\Archiver
 {
@@ -22,14 +23,25 @@ class Archiver extends \Piwik\Plugin\Archiver
 	private function aggregateData($record_name, $dim, $aggFunction, $metrics)
 	{
 		$data = new DataTable();
-        $query = $this->getLogAggregator()->$aggFunction(array($dim), $where = $dim . ' IS NOT NULL', $additionalSelects = array(), array($metrics));
-        if ($query === false)
-		{
+
+        if (!method_exists($this->getLogAggregator(), $aggFunction)) {
+            Log::warning('Class ' . get_class($this->getLogAggregator()) . ': no such method ' . $aggFunction . ';');
             return;
         }
 
-        while ($row = $query->fetch())
-		{
+        $query = $this->getLogAggregator()->$aggFunction(
+            array($dim),
+            $where = $dim . ' IS NOT NULL',
+            $additionalSelects = array(),
+            array($metrics)
+        );
+
+        if ($query === false) {
+            Log::warning('Class ' . get_class($this) . ': prop ' . $aggFunction . ': query error;');
+            return;
+        }
+
+        while ($row = $query->fetch()) {
 			$data->addRowFromArray(array(Row::COLUMNS => array('label' => $row[$dim], 'value' => $row[$metrics])));
         }
 
@@ -39,8 +51,18 @@ class Archiver extends \Piwik\Plugin\Archiver
 
     public function aggregateDayReport()
     {
-		$this->aggregateData(self::MAILMON_ARCHIVE_PP_RECORD, self::MAILMON_PP_DIM, 'queryVisitsByDimension', Metrics::INDEX_NB_VISITS);
-		$this->aggregateData(self::MAILMON_ARCHIVE_AID_RECORD, self::MAILMON_AID_DIM, 'queryActionsByDimension', Metrics::INDEX_NB_ACTIONS);
+		$this->aggregateData(
+            self::MAILMON_ARCHIVE_PP_RECORD,
+            self::MAILMON_PP_DIM,
+            'queryVisitsByDimension',
+            Metrics::INDEX_NB_VISITS
+        );
+		$this->aggregateData(
+            self::MAILMON_ARCHIVE_AID_RECORD,
+            self::MAILMON_AID_DIM,
+            'queryActionsByDimension',
+            Metrics::INDEX_NB_ACTIONS
+        );
     }
 
     public function aggregateMultipleReports()

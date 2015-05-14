@@ -33,7 +33,13 @@ class MailingMonitoringPaywallPlan extends VisitDimension
 		}
 
 		$tracked_url_vars = array();
-		parse_str(parse_url($_GET['url'], PHP_URL_QUERY), $tracked_url_vars);
+		parse_str(
+            parse_url(
+                html_entity_decode(Common::getRequestVar('url', '', 'string')),
+                PHP_URL_QUERY
+            ),
+            $tracked_url_vars
+        );
 
 		$value = Common::getRequestVar('PaywallPlan', false, 'string', $tracked_url_vars);
 
